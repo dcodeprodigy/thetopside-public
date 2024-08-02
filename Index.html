@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base target="_top" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400..700&display=swap" rel="stylesheet">
+
+    <title>Get the e-book | Time Management</title>
+
+    <style>
+      /*General Styling*/
+      html {
+        font-size: 10px;
+      }
+      body {
+        font-size: 2.4rem;
+        margin: 0;
+        font-family: "Noto Naskh Arabic", serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        letter-spacing: 0.8;
+      }
+      body,
+      html {
+        max-width: 100%;
+        min-height: 100%;
+        height: 100%;
+        box-sizing: border-box;
+      }
+      h1 {
+        font-family: "Noto Serif", serif;
+        font-weight: 600;
+        font-size: 3.8rem;
+        color: black;
+        margin: 2rem 1rem 0 1.5rem; 
+      }
+      
+      .line {
+        border: 1px solid rgb(25, 182, 20);;
+        width: 20%;
+        margin: 0 1rem 3rem 1.5rem; 
+      }
+      .first-section {
+        display: flex;
+        column-gap: 2rem;
+        padding-top: 2rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        padding-bottom:1.5rem;
+        background: #ffffff;
+        
+      }
+      .left-section{
+        flex: auto;
+        
+      }
+      .product-description{
+        font-size: 2rem;
+        text-align:justify;
+      }
+      .right-section{
+        flex: auto;
+      }
+      .e-book-cover { /* On the right section */
+        max-width: 100%;
+        height: auto;
+        box-shadow:0px 0px 10px rgba(0, 0, 0, 0.7)
+      }
+
+      ul {
+        list-style-type: none;
+      }
+      li {
+        display: flex;
+        
+      }
+      .checkmark {
+        width: 20px;
+        height: 20px;
+        margin-top: 3px;
+        margin-right: 5px;
+      }
+
+      .form-section{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      form {
+        max-width: 70rem;
+        height: 30rem;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+        border-radius: 5px;
+        padding: 4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 2.5rem;
+      }
+      input[type="email"] {
+        padding: 20px;
+        border: none;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        max-width: 400px;
+        outline: none;
+      }
+      input[type="email"]:focus{
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+      }
+      .submitButton {
+        margin-top: 15px;
+        max-width: 100px;
+        min-width: 70px;
+        color: white;
+        border: none;
+        background-color: rgb(25, 182, 20);
+        padding: 10px;
+        border-radius: 5px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      #agreeToTerms {
+        cursor: pointer;
+        width:16px;
+        height:16px;
+        line-height:normal;
+      }
+      .loading-spinner {
+        display: none;
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-top: 4px solid #3498db;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto;
+        margin-top: 5px;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      p{
+        font-size:2rem;
+      }
+      span{
+        
+        font-size: 1.8rem;
+      }
+      .affirmation span{
+        margin-top: 0;
+      }
+      .affirmation{
+        margin-top: 0;
+      }
+
+       /* POPUP STYLING */
+       body {
+        overflow: auto;
+    }
+
+      .popup-background {
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.7);
+          z-index: 1;
+          overflow: auto;
+      }
+
+      .popup-content {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: white;
+          color: black;
+          padding: 20px;
+          border-radius: 5px;
+          width: 80%;
+          max-width: 800px;
+          display: flex;
+      }
+
+      .popup-image {
+          flex: 1;
+          text-align: center;
+      }
+
+      .popup-image img {
+          max-width: 100%;
+          height: auto;
+      }
+
+      /* Targetting the text on the right hand side of our pop up */
+      .popup-text {
+          flex: 1;
+          padding: 14px;
+      }
+      .popup-text p{
+        margin: 10px 0;
+        font-size: 24px
+      }
+      .thank you{
+        margin: 25px 0;
+      }
+      .close-popup {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          font-size: 30px;
+          cursor: pointer;
+      }
+      .close-popup:hover{
+        background-color:rgba(0, 0, 0, 0.3)
+        color:white;
+        border-radius:20px;
+      }
+
+      /* Styling for Media Query */
+      @media (max-width: 840px) {
+        #popup-message {
+          font-size: 2rem;
+          font-weight: 700;
+        }
+        .pop-up-message-section {
+          max-width: 100%;
+          max-height: 100%;
+          padding: 3%;
+        }
+      }
+      /* Below this, flex row will turn to column*/
+      @media (max-width: 690px) {
+        .popup {
+          flex-direction: column;
+        }
+        .ebook-cover {
+          /*Use a book mockup*/
+          max-width: 50%;
+          max-height: 50%;
+          object-fit: contain;
+          flex: none;
+        }
+        .left-section{
+          margin-top:3.5em;
+        }
+        
+      }
+      @media (max-width: 325px) {
+        #popup-message {
+          font-size: 1.5rem;
+          font-weight: 700;
+        }
+      }
+
+      /* Styling for screens below 1028px */
+      @media(max-width:650px){
+        .first-section{
+          flex-direction: column-reverse;
+          column-gap:0px;
+        }
+        .right-section{
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          padding-top:2rem;
+        }
+        .e-book-cover{
+          max-width:60%;
+          margin:auto;
+        }
+      }
+      @media(max-width:461px){
+        html{
+          font-size: 8px;
+        }
+      }
+      @media(min-width:1600px){
+        html{
+          font-size: 12px;
+        }
+      }
+      @media(min-width:1800){
+        html{
+          font-size: 16px;
+        }
+      }
+      /* Alters the styling of the pop up when below 780px */
+      @media(max-width:780px){
+        .thank-you{
+          font-size:28px;
+        }
+        popup-text p{
+          font-size: 18px;
+
+        }
+      }
+
+  /* Media Query for pop up */
+    @media (max-width: 600px) {
+      
+      .popup-content {
+        flex-direction: column;
+      }
+
+      .popup-image img {
+        max-width: 50%; /* Ensure the image doesn't overflow */
+        height: auto; /* Maintain aspect ratio */
+        object-fit: contain; /* Keep the image contained */
+      }
+
+      .popup-text {
+        padding: 10px; 
+        text-align: center; /* Center-align the text */
+      }
+
+      .popup-text p {
+        font-size: 16px;
+        margin: 10px 0;
+      }
+    }
+
+    </style>
+  </head>
+  <h1>Get Your Free E-Book</h1>
+  <div class="line"></div>
+  <body>
+    <section class="first-section">
+      <div class="left-section">
+        <p class="product-description">
+          Master the art of time management with our free e-book. In this
+          insightful guide, you'll discover valuable tips and strategies to make
+          the most of your time and achieve a more productive and balanced life.
+        </p>
+
+        <div>
+          <p style="text-align:justify">What will you gain from this e-book?</p>
+        <ul>
+          <li>
+            <img src="https://josephalex.vercel.app/greencheck.svg" class="checkmark">
+            <span style="text-align:justify">Practical techniques to manage your time effectively</span>
+          </li>
+          <li>
+            <img src="https://josephalex.vercel.app/greencheck.svg" class="checkmark">
+            <span style="text-align:justify">Insights on setting and prioritizing meaningful goals</span>
+          </li>
+          <li>
+            <img src="https://josephalex.vercel.app/greencheck.svg" class="checkmark">
+            <span style="text-align:justify">Tools to conquer procrastination and increase productivity</span>
+          </li>
+          <li>
+            <img src="https://josephalex.vercel.app/greencheck.svg" class="checkmark">
+            <span style="text-align:justify">Strategies for creating a healthier work-life balance</span>
+          </li>
+        </ul>
+        <p style="text-align:justify">
+          Interested? Fill out the form below to receive this guide directly in
+          your E-mail app
+        </p>
+      </div>
+      </div>
+      <div class="right-section">
+        <!--Animatable Image of the book will be here-->
+        <script src="https://josephalex.vercel.app/cover.js"></script>
+        
+      </div>
+
+        
+
+      
+    </section>
+    
+
+    <!-- Form Section -->
+    <section class="form-section">
+      <form
+        onsubmit="submitForm(); return false;"
+        method="post"
+        action="https://script.google.com/macros/s/AKfycbyQdQuYaiq8oHxJ1Vq95FCmFB7K-XkioZiJYYO1Vy5K/dev"
+        target="iframe"
+      >
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Enter your email address"
+          autocomplete="off"
+          required
+        /><br />
+        <div class="loading-spinner" id="loadingSpinner"></div>
+        <p class="affirmation">
+          Join my community of over 7000 satisfied subscribers. Unsubscribe anytime.
+          <span style="font-weight: bold">I will never share your data.</span>
+
+        </p>
+        <button type="submit" class="submitButton" id="submitBtn">
+          Submit
+        </button>
+      </form>
+    </section>
+
+    <iframe
+      name="iframe"
+      style="position: absolute; visibility: hidden"
+    ></iframe>
+
+    <div id="popupBackground" class="popup-background">
+        <div id="popupContent" class="popup-content">
+            <span id="closePopup" class="close-popup">&times;</span>
+            <div class="popup-image">
+                <img src="https://josephalex.vercel.app/MANAGEMENT.png" alt="Time Management Ebook Cover">
+            </div>
+
+            <div class="popup-text">
+                <h2 class="thank-you">Thank You For Requesting the E-book!!!</h2>
+                <p>
+                  If you have not received the bonus content before, you will get a response from me via email shortly
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/for-index.js">
+      
+    </script>
+  </body>
+</html>
