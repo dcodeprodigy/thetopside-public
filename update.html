@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- <base target="_top"> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/fa35fe23a3.js" crossorigin="anonymous"></script>
+  <!-- <link rel="preload" as="style" href="https://thetopside.vercel
+  app/stylesheets/main-styles.css"> -->
+  <link rel="preload" as="script" href="https://thetopside.vercel.app/general-js/main.js">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400..700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://thetopside.vercel.app/stylesheets/customer-review.css">
+  <link rel="stylesheet" href="https://thetopside.vercel.app/stylesheets/main-styles.css">
+  <link rel="stylesheet" href="https://thetopside.vercel.app/stylesheets/carousel.css">
+  <title>Home - The TopSide</title>
+
+  <style>
+    .hidden {
+      display: none;
+    }
+
+    .sendArrowColor {
+      background-color: rgb(157, 188, 245);
+    }
+
+    #submitBtn {
+      position: relative;
+    }
+
+    .page {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .message {
+      display: none;
+      font-family: "Vazirmatn";
+      color: rgb(245, 245, 245);
+      padding: 15px 15px;
+      border-radius: 8px;
+      background: linear-gradient(145deg, rgb(16, 89, 227), rgba(9, 73, 192, 1));
+      box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.33),
+        0px 0px 4px rgba(0, 0, 0, 0.33);
+      text-align: left;
+      position: fixed;
+      right: 10px;
+      top: 90px;
+      font-size: 1.5rem;
+      max-width: 300px;
+
+
+    }
+
+    /* Loader CSS */
+    .loadContainer {
+      display: none;
+      --loaderSize: 35px;
+      /* size of the container */
+    }
+
+    .loadCircle {
+      --loaderSpeed: 1.4s;
+    }
+
+    .loadCircleInner {
+      --border-thickness: 5px;
+      /* the bigger the loader is, the thicker this needs to be */
+      --loader-base-color: 255, 255, 255;
+      /* rbg color */
+    }
+
+    .loadContainer {
+      position: relative;
+      width: var(--loaderSize);
+      height: var(--loaderSize);
+    }
+
+    .loadInner {
+      width: 82.5%;
+      height: 85%;
+      border-radius: 100%;
+      position: absolute;
+      top: 7.5%;
+      left: 7.25%;
+    }
+
+    .loadCircle {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+
+    .loadCircle>.loadCircleInner {
+      width: 100%;
+      height: 100%;
+      border-radius: 100%;
+      border: var(--border-thickness) solid rgba(var(--loader-base-color), 0.7);
+      border-right: none;
+      border-top: none;
+      /* background-clip: padding; */
+      box-shadow: inset 0px 0px 10px rgba(var(--loader-base-color), 0.15);
+    }
+
+    .loadCircle:nth-of-type(0) {
+      transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+    }
+
+    .loadCircle:nth-of-type(0) .loadCircleInner {
+      animation: loaderSpin var(--loaderSpeed) infinite linear;
+      -o-animation: loaderSpin var(--loaderSpeed) infinite linear;
+      -ms-animation: loaderSpin var(--loaderSpeed) infinite linear;
+      -webkit-animation: loaderSpin var(--loaderSpeed) infinite linear;
+      -moz-animation: loaderSpin var(--loaderSpeed) infinite linear;
+    }
+
+    .loadCircle:nth-of-type(1) {
+      transform: rotate(70deg);
+      -o-transform: rotate(70deg);
+      -ms-transform: rotate(70deg);
+      -webkit-transform: rotate(70deg);
+      -moz-transform: rotate(70deg);
+    }
+
+    .loadCircle:nth-of-type(1) .loadCircleInner {
+      animation: loaderSpin var(--loaderSpeed) infinite linear;
+      -o-animation: loaderSpin var(--loaderSpeed) infinite linear;
+      -ms-animation: loaderSpin var(--loaderSpeed) infinite linear;
+      -webkit-animation: loaderSpin var(--loaderSpeed) infinite linear;
+      -moz-animation: loaderSpin var(--loaderSpeed) infinite linear;
+    }
+
+    .loadCircle:nth-of-type(2) {
+      transform: rotate(140deg);
+      -o-transform: rotate(140deg);
+      -ms-transform: rotate(140deg);
+      -webkit-transform: rotate(140deg);
+      -moz-transform: rotate(140deg);
+    }
+
+    .loadCircle:nth-of-type(2) .loadCircleInner {
+      animation: loaderSpin var(--loaderSpeed) infinite linear;
+      -o-animation: loaderSpin var(--loaderSpeed) infinite linear;
+      -ms-animation: loaderSpin var(--loaderSpeed) infinite linear;
+      -webkit-animation: loaderSpin var(--loaderSpeed) infinite linear;
+      -moz-animation: loaderSpin var(--loaderSpeed) infinite linear;
+    }
+
+    .loadInner {
+      animation: loaderSpin (var(--loaderSpeed)*2.5) infinite linear;
+      -o-animation: loaderSpin (var(--loaderSpeed)*2.5) infinite linear;
+      -ms-animation: loaderSpin (var(--loaderSpeed)*2.5) infinite linear;
+      -webkit-animation: loaderSpin (var(--loaderSpeed)*2.5) infinite linear;
+      -moz-animation: loaderSpin (var(--loaderSpeed)*2.5) infinite linear;
+    }
+
+    @keyframes loaderSpin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @-o-keyframes loaderSpin {
+      from {
+        -o-transform: rotate(0deg);
+      }
+
+      to {
+        -o-transform: rotate(360deg);
+      }
+    }
+
+    @-ms-keyframes loaderSpin {
+      from {
+        -ms-transform: rotate(0deg);
+      }
+
+      to {
+        -ms-transform: rotate(360deg);
+      }
+    }
+
+    @-webkit-keyframes loaderSpin {
+      from {
+        -webkit-transform: rotate(0deg);
+      }
+
+      to {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+    @-moz-keyframes loaderSpin {
+      from {
+        -moz-transform: rotate(0deg);
+      }
+
+      to {
+        -moz-transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="website-navigation-section">
+    <nav>
+      <!--Keeps the company logo at the middle when on display none-->
+      <a href="#second-form">Newsletter</a>
+      <a href="#blocked" class="disabledLinks">Our Blog</a>
+      <a href="#blocked" class="disabledLinks">Daily Inspiration</a>
+      <a href="mailto:josephalexconsulting@gmail.com">Contact us</a>
+    </nav>
+    <img src="https://thetopside.vercel.app/icons/thetopsidelogo.png" class="website-logo" id="website-logo">
+    <!--Website logo-->
+    <button class="menu-button">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+  </header>
+  <!-- <section class="side-bar-section"> -->
+  <div class="side-bar">
+    <a href="#second-form" class="newsletter-link" id="menu-newsletter-link">Newsletter</a>
+    <a href="#" class="disabledLinks" id="menu-our-blog">Our Blog</a>
+    <a href="#" class="disabledLinks" id="menu-daily-inspiration">Daily Inspiration</a>
+    <a href="mailto:josephalexconsulting@gmail.com" class="contact-us" id="menu-contact-us">Contact us</a>
+  </div>
+  <!-- <div class="back-drop-div"></div> -->
+  <!-- </section> -->
+  <div class="guage"></div>
+
+  <main>
+    <section class="first-section">
+      <!--First section of this page-->
+      <div class="sub-fs">
+        <h1>
+          Everything <span>Scientific</span> & <span>Practical</span> You Need to Grow.
+        </h1>
+        <p class="sub-heading">Discover New Ways to Hack Your Productivity and Develop Positive Habits</p>
+        <a href="#third-section">
+          <button class="get-started">Get Started</button>
+        </a>
+      </div>
+
+
+      <img src="https://thetopside.vercel.app/images/illustration-1.png" class="illustration-1" alt="Productivity Illustration">
+    </section>
+
+    <section class="second-section" id="our-mission">
+      <!--Second Section of this page-->
+      <div class="sub-second-section">
+        <object data="https://thetopside.vercel.app/images/community-icon.svg" type="image/svg" class="community-icon">
+                    <img src="https://thetopside.vercel.app/images/community-icon.svg" class="community-icon">
+                </object>
+        <h2>Who are we?</h2>
+        <p>We are a growing community of over 7000 individuals dedicated to helping you build a more positive,
+          productive, and fulfilling life – one step at a time. We believe in the power of community, support, and the
+          daily pursuit of your best self.
+        </p>
+      </div>
+      <div class="sub-second-section">
+        <object data="https://thetopside.vercel.app/images/help-hands.svg" type="image/svg" class="community-icon">
+                    <img src="https://thetopside.vercel.app/images/help-hands.svg" class="community-icon">
+                </object>
+        <h2>What do we do?</h2>
+        <p>We believe self-discipline is the key to unlocking your full potential. That's why we're passionate about
+          providing practical strategies and daily inspiration to help you cultivate unwavering discipline and achieve
+          your goals.
+        </p>
+      </div>
+      <div class="sub-second-section">
+        <object data="https://thetopside.vercel.app/images/team-achievement.svg" type="image/svg" class="community-icon">
+                    <img src="https://thetopside.vercel.app/images/team-achievement.svg" class="community-icon">
+                </object>
+        <h2>How do we plan on achieving this?</h2>
+        <p>
+          We know that discipline alone isn't always enough. That's why we foster a supportive community of like-minded
+          individuals. Whether you're pursuing fitness goals, career aspirations, personal growth, or simply want to
+          level up your skills – we offer bite-sized tips, inspiring stories, and a space to connect with others on the
+          same journey.
+        </p>
+      </div>
+      <div class="sub-second-section">
+        <object data="https://thetopside.vercel.app/images/team-achievement.svg" type="image/svg" class="community-icon">
+                    <img src="https://thetopside.vercel.app/images/team-achievement.svg" class="community-icon">
+                </object>
+        <h2>Our Philosophy</h2>
+        <p>
+          We believe that consistency is more powerful than bursts of unsustainable intensity. True transformation
+          happens through the consistent commitment to doing the common things exceptionally well, day by day. We
+          understand setbacks are inevitable, and we're here to help you pick yourself up, learn, and keep moving
+          forward.
+        </p>
+      </div>
+      <div class="sub-second-section">
+        <object data="https://thetopside.vercel.app/images/team-achievement.svg" type="image/svg" class="community-icon">
+                    <img src="https://thetopside.vercel.app/images/team-achievement.svg" class="community-icon">
+                </object>
+        <h2>Join Us</h2>
+        <p>
+          Let's unlock your extraordinary potential together. Become part of The Topside community and experience the
+          power of discipline, support, and unwavering determination.
+        </p>
+      </div>
+    </section>
+
+    <section class="third-section" id="third-section">
+      <!--Third Section of this page-->
+      <div id="get-onboard">
+        <h2>
+          Ready to get onboard? Let's get you started with this <span>FREE 34-page guide</span> on Time Management
+        </h2>
+        <p>
+          We all get the same 24 hours in a day, yet some people seem to achieve so much more while feeling calm and
+          collected. The secret? Mastering the art of time management.
+        </p>
+        <a href="#newsletter-section">
+          <button class="jump-to-ebook">Jump to E-book</button>
+        </a>
+      </div>
+
+      <object data="https://thetopside.vercel.app/images/time-management.svg"></object>
+    </section>
+
+    <section class="fourth-section">
+      <!--Fourth Section of this page-->
+      <h2>
+        In this FREE mini-ebook,
+      </h2>
+      <p> You'll unlock bite-sized tips and strategies to squeeze the most out of your 24 hours. These practical hacks
+        will help:
+      </p>
+      <div class="book-features-container">
+        <!--This should work for the desktop version if we use display flex-->
+        <img src="https://thetopside.vercel.app/images/book-mockup.png" class="book-mockup" alt="image of the FREE ebook">
+        <div class="book-features">
+          <div>
+            <!--First feature-->
+            <h5>Boost your productivity</h5>
+            <p>This will help you conquer your to-do list in record time! ⚡️</p>
+          </div>
+          <div>
+            <!--Second feature-->
+            <h5>Minimize stress</h5>
+            <p>Chill vibes only: Stress be gone!</p>
+          </div>
+          <div>
+            <!--Third feature-->
+            <h5>Achieve your goals faster</h5>
+            <p>⏳ Time is precious, you will learn how to make it count.</p>
+          </div>
+          <div>
+            <!--Fourth feature-->
+            <h5>Create a satisfying and balanced life ✨</h5>
+            <p>Time well claimed, life well-played.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="fifth-section">
+      <!--Fifth Section of this page-->
+      <h2>TESTIMONIALS</h2>
+      <p>
+        Whether you're a seasoned "go-getter" or just starting your journey towards a more fulfilling life, this e-book
+        has something for everyone. Don't just take our word for it - see what other readers are saying:
+      </p>
+      <div class="container-wrapper">
+        <!--This will help us position those buttons outside the container element-->
+        <!--The previous button-->
+        <button class="previous-button" id="previous-button" aria-label="Go to the Previous Review" >
+                    <img src="https://thetopside.vercel.app/icons/previousIcon.svg" alt="Go to the Previous Review" class="prevImg"> 
+                </button>
+
+        <section class="container">
+          <!--Readers Review-->
+          <div class="review-card">
+            <!--Review 1-->
+            <div class="top-details">
+              <object data="https://thetopside.vercel.app/images/open-quote.svg" type="image/svg" class="open-quote">
+                                <img src="https://thetopside.vercel.app/images/open-quote.svg" alt="Quote">
+                            </object>
+              <h3>A Long-Term Investment</h3>
+              <p>
+                "This is the kind of book you'll keep coming back to as your life and goals change. It teaches you
+                timeless principles of time management that pay dividends for years to come."
+              </p>
+            </div>
+
+            <div class="customer-details">
+              <img src="https://designmodo.com/startup/app/i/testimonial-2-1.jpg" alt="Marvin Meadows" class="customer-image">
+              <h5>
+                Marvin Meadows
+              </h5>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <!--Review 2-->
+            <div class="top-details">
+              <object data="https://thetopside.vercel.app/images/open-quote.svg" type="image/svg" class="open-quote">
+                                <img src="https://thetopside.vercel.app/images/open-quote.svg" alt="Quote">
+                            </object>
+              <h3>Beyond Productivity</h3>
+              <p>
+                "This book isn't just about squeezing more into your day. It helped me understand the importance of
+                prioritizing and aligning my time use with my values. A total eye-opener!"
+              </p>
+            </div>
+
+            <div class="customer-details">
+              <img src="https://designmodo.com/startup/app/i/testimonial-2-2.jpg" alt="Floyd Miles" class="customer-image">
+              <h5>
+                Floyd Miles
+              </h5>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <!--Review 3-->
+            <div class="top-details">
+              <object data="https://thetopside.vercel.app/images/open-quote.svg" type="image/svg" class="open-quote">
+                                <img src="https://thetopside.vercel.app/images/open-quote.svg" alt="Quote">
+                            </object>
+              <h3>Clarity & Actionable Advice</h3>
+              <p>
+                "This book offers a clear and practical approach to time management. I love that it's not just filled
+                with theory – there are tons of actionable techniques that I can start using right away."
+              </p>
+            </div>
+
+            <div class="customer-details">
+              <img src="https://designmodo.com/startup/app/i/testimonial-2-3.jpg" alt="Darrell Steward" class="customer-image">
+              <h5>
+                Darrell Steward
+              </h5>
+            </div>
+          </div>
+        </section>
+        <!--End of Review Section-->
+
+        <button class="next-button" id="next-button" aria-label="Go to the Next Review" >
+                    <img src="https://thetopside.vercel.app/icons/nextIcon.svg" alt="Go to the Next Review" class="nextImg"> 
+                </button>
+
+
+      </div>
+
+    </section>
+    <!--End of Fifth Section-->
+
+    <form class="newsletter-section" id="newsletter-section" onsubmit="submitData(); return false;" method="POST"
+      action="https://script.google.com/macros/s/AKfycbyQdQuYaiq8oHxJ1Vq95FCmFB7K-XkioZiJYYO1Vy5K/dev" target="iframe">
+      <!--Newsletter Form - Sixth Section-->
+      <h3>Get the E-book Today</h3>
+      <div class="input-section">
+        <div class="sub-input-section">
+          <div>
+            <img src="https://thetopside.vercel.app/icons/email-icon-input-section.png" alt="Email Icon" class="message-icon">
+          </div>
+
+          <input class="input-field" placeholder="Email Address"  type="email" name="emailField" id="emailField" required>
+        </div>
+
+        <button type="submit" id="submitBtn" style="height:49px;">
+                  <span class="submitBtnTxt" style="font-size:inherit;">Get E-book</span>
+                  <div class="page">
+                  <div class="loadContainer">
+                  <div class="loadInner">
+                    <div class="loadCircle">
+                      <div class="loadCircleInner"></div>
+                    </div>
+                    <div class="loadCircle">
+                      <div class="loadCircleInner"></div>
+                    </div>
+                    <div class="loadCircle">
+                      <div class="loadCircleInner"></div>
+                    </div>
+                    <div class="loadCircle">
+                      <div class="loadCircleInner"></div>
+                    </div>
+                    <div class="loadCircle">
+                      <div class="loadCircleInner"></div>
+                    </div>
+                  </div>
+                  </div>
+                  </div>
+                </button>
+      </div>
+      <p>I will never share your data</p>
+      <div class="message">
+      </div>
+
+    </form>
+    <!-- This is the target for our submit button. I prevents the page from redirecting to where google wanta it to lol -->
+    <iframe name="iframe" style="position: absolute; visibility: hidden"></iframe>
+
+    <section class="moderators seventh-section">
+      <!--Moderators - Seventh Section-->
+      <div>
+        <!--First Section of Moderators-->
+        <h2>Meet the Minds Behind this Project</h2>
+      </div>
+      <p>
+        We're a team dedicated to boosting productivity. Join our passionate community of productivity enthusiasts. Our
+        blog is your go-to resource for valuable insights, proven strategies, and a constant source of inspiration.
+      </p>
+
+      <div class="mods-section">
+        <!--Images of Moderators Display-->
+        <div class="mods">
+          <!--Moderator 1-->
+          <picture>
+            <source media="(max-width: 800px)"
+              srcset="https://thetopside.vercel.app/images/mods-imgs/francis-miller-small.png" type="image/png">
+            <source media="(min-width: 801px)"
+              srcset="https://thetopside.vercel.app/images/mods-imgs/francis-miller-large.png" type="image/png">
+            <img src="https://thetopside.vercel.app/images/mods-imgs/francis-miller-large.png" alt="Francis Miller - Moderator">
+          </picture>
+          <h3>Francis Miller</h3>
+          <h5>Senior Fullstack Developer</h5>
+          <p>Forget the hustle culture myths! I'm Francis, and I'm here to tell you striving for productivity doesn't
+            have to be a solo mission. Let's abandon the guilt, share our struggles, and build a supportive space where
+            everyone can explore their own path to a more balanced, productive future.</p>
+        </div>
+
+        <div class="mods">
+          <!--Moderator 2-->
+          <picture>
+            <source media="(max-width: 800px)"
+              srcset="https://thetopside.vercel.app/images/mods-imgs/joseph-alex-small.png" type="image/png">
+            <source media="(min-width: 801px)"
+              srcset="https://thetopside.vercel.app/images/mods-imgs/joseph-alex-large.png" type="image/png">
+            <img src="https://thetopside.vercel.app/images/mods-imgs/joseph-alex-large.png" alt="Joseph Alex - Moderator">
+          </picture>
+          <h3>Joseph Alex</h3>
+          <h5>M.B.B.S.</h5>
+          <p>I'm Joseph. Procrastination was my constant companion, until I harnessed the power of daily routines,
+            focused planning, and a little self-kindness. That journey transformed me, and now I'm dedicated to sharing
+            those tools with you through this blog.</p>
+        </div>
+
+        <div class="mods">
+          <!--Moderator 3-->
+          <picture>
+            <source media="(max-width: 800px)"
+              srcset="https://thetopside.vercel.app/images/mods-imgs/evelynn-kayce-small.png" type="image/png">
+            <source media="(min-width: 801px)"
+              srcset="https://thetopside.vercel.app/images/mods-imgs/evelynn-kayce-large.png" type="image/png">
+            <img src="https://thetopside.vercel.app/images/mods-imgs/evelynn-kayce-large.png" alt="Evelynn Kayce - Moderator">
+          </picture>
+          <h3>Evelynn Kayce</h3>
+          <h5>Writer, Editor and Researcher</h5>
+          <p>I'm not one to shy away from digging deep. I immerse myself in research, taking on complex topics with a
+            steady hand, and bringing hidden truths to light. I steer through jargon with precision, refining sentences
+            until they convey honesty and clarity. In my world, there's no room for unnecessary embellishments – just
+            straightforward knowledge, crafted for everyone to grasp.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <!--Eight Section-->
+
+    <div>
+      <!--Resources Section | Section 1-->
+      <h4>Resources</h4>
+      <a href="#blocked" class="disabledLinks">Our Blog <span class="coming-soon">  / Coming Soon</span></a>
+      <a href="#blocked" class="disabledLinks">Daily Inspiration <span class="coming-soon">  / Coming Soon</span></a>
+      <a href="#blocked" class="disabledLinks">Recommended <span class="coming-soon">  / Coming Soon</span></a>
+    </div>
+
+    <div>
+      <!--About Section | Section 2-->
+      <h4>About</h4>
+      <a href="#our-mission">Mission</a>
+      <!-- <a href="#">Privacy</a>
+            <a href="#">Terms</a> -->
+      <a href="mailto:josephalexconsulting@gmail.com">Contact us</a>
+    </div>
+
+    <form class="second-form" id="second-form" onsubmit="submit2ndForm(); return false;" method="POST"
+      action="https://script.google.com/macros/s/AKfycbyQdQuYaiq8oHxJ1Vq95FCmFB7K-XkioZiJYYO1Vy5K/dev" target="iframe">
+      <!--Second Form, this time for Newsletter | Section 3-->
+      <h3>Newsletter</h3>
+      <P>Be the first to receive our weekly articles directly in your mailbox</P>
+
+      <div class="second-input-section">
+        <!--Input Field Section-->
+        <div>
+          <img src="https://thetopside.vercel.app/icons/email-icon-input-section.png" class="email-icon">
+        </div>
+        <input type="email" class="second-input" id="second-input" placeholder="Email address" required>
+        <button class="sendIconButton" id="sendIconButton" type="submit"><!--Send Icon DIV-->
+                    
+                  <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#ffffff" stroke-width="1.5"><g clip-path="url(#clip0_4086_8473)"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.84647 7.15123C1.54566 7.21608 1.31498 7.45811 1.26464 7.7617C1.2143 8.06528 1.35452 8.36881 1.6183 8.52729L8.13474 12.4421L14.3544 8.08705C14.6938 7.84947 15.1614 7.93193 15.399 8.27123C15.6366 8.61054 15.5541 9.0782 15.2148 9.31578L8.99537 13.6707L10.4455 21.1339C10.5042 21.436 10.7415 21.6715 11.044 21.7281C11.3465 21.7846 11.6528 21.6506 11.8166 21.3901L22.7919 3.93893C22.9526 3.68349 22.9445 3.35665 22.7714 3.10947C22.5983 2.86228 22.294 2.7429 21.999 2.80649L1.84647 7.15123Z" fill="#ffffff"></path></g><defs><clipPath id="clip0_4086_8473"><rect width="32" height="32" fill="white"></rect></clipPath></defs></svg>
+
+                  
+                </button>
+      </div>
+    </form>
+
+  </footer>
+  <!--<video loading="lazy" muted="muted" src="https://cdnl.iconscout.com/lottie/premium/thumb/send-mail-9675666-7922379.mp4" type="video/mp4" autoplay="autoplay" loop="loop"></video>-->
+
+
+
+  <script src="https://thetopside.vercel.app/general-js/main.js"></script>
+  <script src="https://thetopside.vercel.app/general-js/customer-review-carousel.js"></script>
+
+
+  <script>
+    let emailField = document.getElementById("emailField");
+      let secondemailField = document.getElementById("second-input");
+      const iframe = document.querySelector("iframe");
+      const submitBtn = document.getElementById("submitBtn");
+      const secondSubmitBtn = document.querySelector(".sendIconButton");
+      let loadSpinner = document.querySelector(".loadContainer");
+      let submitBtnTxt = document.querySelector(".submitBtnTxt");
+      let messagePopup = document.querySelector(".message");
+      const menuLinks = document.querySelectorAll(".disabledLinks");
+
+      // Controlling the message
+      window.addEventListener("load", ()=> {messagePopup.style.display = "none"});
+      let messageTimeout; // For controlling the timeout of the messagePopup
+      let emailSubmittedMsg; // Message to be ent to function when email is submitted succesfully
+      let linkClickMsg;
+
+
+      // For diplaying a message when user clicks on disabled menu links
+      menuLinks.forEach(function (menuLink){
+        menuLink.addEventListener("click", function (){
+          // console.log(`I, ${this.childNodes[0].textContent.trim()} was clicked`); 
+          linkClickMsg = `"${this.childNodes[0].textContent.trim()}" will be Available Soon`; // We try to remove any extra element like "/ Coming Soon" as seen in the links at the footer
+          runPopup(linkClickMsg); 
+        })
+      });
+      
+
+
+
+
+      // Converts any input on this field to small letters
+      emailField.addEventListener("input", function () {
+        this.value = this.value.toLowerCase();
+      });
+      secondemailField.addEventListener("input", function () {
+        this.value = this.value.toLowerCase();
+      });
+
+
+      // Submit Data - Form 1
+      function submitData() {
+        const userEmail = emailField.value;
+        const screenWidth = window.innerWidth;
+
+        const data = {
+          email : userEmail,
+          screenWidth : screenWidth,
+        };
+
+        
+        // Disable the submit button and show the loading spinner
+        emailField.disabled = true;
+        submitBtn.disabled = true; secondSubmitBtn.disabled = true;
+        submitBtnTxt.textContent = ""; 
+        loadSpinner.style.display = "inline-block";
+
+        google.script.run // If the email was sent successfully, proceed with adding the subscriber.
+          .withSuccessHandler(function (response) {
+            if (response === "Sent") {
+              google.script.run
+                .withSuccessHandler(function (response) {
+                  data.userIpAddress = response;
+                  data.successOrNotProperty = "Email Sent Succesfully";
+                  google.script.run.addSubscriber(data);
+                })
+                .getIpAddress();
+
+            }else {
+              google.script.run
+                .withSuccessHandler(function (response) {
+                  data.userIpAddress = response;
+                  data.successOrNotProperty = "Email Not Sent";
+                  google.script.run.addSubscriber(data);
+                })
+                .getIpAddress();
+              }
+
+            emailField.disabled = false;
+            submitBtn.disabled = false; secondSubmitBtn.disabled = false; // Re-enables the submit button
+            emailField.value = ""; // Clears the email input field
+            loadSpinner.style.display = "none";
+            submitBtnTxt.textContent = "Get E-book";
+            emailSubmittedMsg = `Request submitted successfully!
+                You will receive an email shortly.`;
+            runPopup(emailSubmittedMsg);
+          })
+          .sendEmail(userEmail);
+      };
+
+
+      // For the second submit button at the footer
+      
+      // Submit Data
+      function submit2ndForm() {
+        const userEmail = secondemailField.value;
+        const screenWidth = window.innerWidth;
+
+        const data = {
+          email : userEmail,
+          screenWidth : screenWidth,
+        };
+
+        
+        // Disable the submit button and show the loading spinner
+        secondSubmitBtn.disabled = true; submitBtn.disabled = true;
+        secondSubmitBtn.classList.toggle('sendArrowColor');
+        secondemailField.disabled = true;
+        loadSpinner.style.display = "inline-block";
+
+        google.script.run // If the email was sent successfully, proceed with adding the subscriber.
+          .withSuccessHandler(function (response) {
+            if (response === "Sent") {
+              google.script.run
+                .withSuccessHandler(function (response) {
+                  data.userIpAddress = response;
+                  data.successOrNotProperty = "Email Sent Succesfully";
+                  google.script.run.addSubscriber(data);
+                })
+                .getIpAddress();
+
+            }else {
+              google.script.run
+                .withSuccessHandler(function (response) {
+                  data.userIpAddress = response;
+                  data.successOrNotProperty = "Email Not Sent";
+                  google.script.run.addSubscriber(data);
+                })
+                .getIpAddress();
+              }
+
+            secondSubmitBtn.disabled = false; submitBtn.disabled = false; // Re-enables the submit button
+            secondSubmitBtn.classList.toggle('sendArrowColor');
+            secondemailField.value = ""; // Clears the email input field
+            secondemailField.disabled = false;
+            loadSpinner.style.display = "none";
+            emailSubmittedMsg = `Request submitted successfully!
+                You will receive an email shortly.`;
+            runPopup(emailSubmittedMsg);
+          })
+          .sendEmail(userEmail);
+      };
+      
+      
+      function runPopup(info){ // Runs the popup message
+          messagePopup.textContent = info;
+          messagePopup.style.display = "block";
+          clearTimeout(messageTimeout);
+            
+          setTimeout( ()=> { // JQuery Code to fade the message Popup multiple times. What a time saver
+              $('.message').fadeOut("slow")
+          }, 4000); // <-- time in milliseconds
+        }
+
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</body>
+
+</html>
